@@ -5,7 +5,7 @@ const app: Express = express()
 
 app.get('/', (req: Request, res: Response) => {
 	res.send
-('Hiii!!')
+('Hiii!')
 })
 
 app.listen(port, () => {
