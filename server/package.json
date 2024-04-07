@@ -23,8 +23,9 @@
     "mongoose": "^8.2.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.12.3",
+    "@types/node": "^20.12.5",
     "nodemon": "^3.1.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.3"
