@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
-import connectedDB from './src/config/connectionDB'
+import connectedDB from  './config/connectionDB'
 
 const port = process.env.PORT || 3040
 const app = express()

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
-const connectionDB_1 = __importDefault(require("./src/config/connectionDB"));
+const connectionDB_1 = __importDefault(require("./config/connectionDB"));
 const port = process.env.PORT || 3040;
 const app = (0, express_1.default)();
 // Middlewares
