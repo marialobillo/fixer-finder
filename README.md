@@ -24,3 +24,12 @@ Setup the frontend
   cd client
   npm install 
 ```
+
+## Environment Variables
+
+```bash
+  # server/.env
+  PORT=5000
+  MONGO_URI=your_mongo_uri
+  JWT_SECRET=your_jwt_secret
+```
