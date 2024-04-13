@@ -11,12 +11,6 @@ app.use(cors())
 app.use(helmet())
 
 
-app.get('/', (req: Request, res: Response) => {
-	res.send
-('Hiii!')
-})
-
-
 const start = async () => {
 	try {
 		await connectedDB()
