@@ -1,6 +1,6 @@
 # For Easy Booking
 
-For Easy Booking is a web application that allows users to book appointments with service providers. The application is built with React, Node.js, Express, and MongoDB.
+For Easy Booking is a platform that allows users to publish jobs and get them done by professionals. It is a platform that connects professionals with clients who need their services.
 
 ## Installation
 
