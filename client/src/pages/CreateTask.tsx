@@ -10,7 +10,6 @@ const CreateTask = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('Task Title:', taskTitle )
   }
 
   return (
