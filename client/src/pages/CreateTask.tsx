@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 
-const CreateJob = () => {
-  const [jobTitle, setJobTitle] = useState<string>('');
+const CreateTask = () => {
+  const [taskTitle, setTaskTitle] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setJobTitle(event.target.value)
+    setTaskTitle(event.target.value)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('Job Title:', jobTitle )
+    console.log('Task Title:', taskTitle )
   }
 
   return (
@@ -18,15 +18,14 @@ const CreateJob = () => {
       <form action="">
         <input 
           type="text"
-          value={jobTitle}
+          value={taskTitle}
           onChange={handleInputChange} 
-          placeholder="Enter job title" />
-        <button type="submit">Create Job</button>
+          placeholder="Enter task title" />
+        <button type="submit">Create Task</button>
       </form>
-      
-      <p>Job Title: {jobTitle}</p>
+      <p>Task Title: {taskTitle}</p>
     </div>
   )
 }
 
-export default CreateJob
+export default CreateTask

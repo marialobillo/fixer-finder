@@ -1,16 +1,13 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import CreateJob from './pages/CreateJob'
-
+import CreateTask from './pages/CreateTask'
 
 
 function App() {
- 
-
   return (
     <>
      <Routes>
-      <Route path="/" element={<CreateJob />} />
+      <Route path="/" element={<CreateTask />} />
      </Routes>
     </>
   )
