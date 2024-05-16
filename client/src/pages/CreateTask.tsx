@@ -55,73 +55,98 @@ const CreateTask = () => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="container">
+      <h3 className="text-5xl font-extrabold dark:text-white my-6">Create Task</h3>
+      <form onSubmit={handleSubmit} className="">
+        <div className="grid md:grid-cols-2 md:gap-6">
         <div>
+          <label 
+            htmlFor="title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Title</label>
           <input
             type="text"
             name="title"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={task.title}
             onChange={handleInputChange}
-            placeholder="Enter task title"
           />
           {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
         </div>
         <div>
+          <label 
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            htmlFor="description">Description</label>
           <textarea
             name="description"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={task.description}
             onChange={handleInputChange}
-            placeholder="Enter task description"
           />
           {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
         </div>
         <div>
+          <label 
+            htmlFor="location"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Location</label>
           <input
             type="text"
             name="location"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={task.location}
             onChange={handleInputChange}
-            placeholder="Enter location"
           />
           {errors.location && <p style={{ color: 'red' }}>{errors.location}</p>}
         </div>
         <div>
+          <label 
+            htmlFor="price"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Price</label>
           <input
             type="text"
             name="price"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={task.price}
             onChange={handleInputChange}
-            placeholder="Enter price"
           />
           {errors.price && <p style={{ color: 'red' }}>{errors.price}</p>}
         </div>
         <div>
+          <label 
+            htmlFor="dueDate"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Due Date</label>
           <input
             type="date"
             name="dueDate"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={task.dueDate}
             onChange={handleInputChange}
-            placeholder="By when should it be done"
           />
           {errors.dueDate && <p style={{ color: 'red' }}>{errors.dueDate}</p>}
         </div>
         <div>
+          <label 
+            htmlFor="images"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Media</label>
           <input
             type="file"
             name="images"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleFileChange}
             multiple
           />
         </div>
-        <button type="submit">Create Task</button>
+        </div>
+        
+        <button 
+          type="submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full sm:w-auto my-3 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >Create Task</button>
       </form>
-      <p>Task Title: {task.title}</p>
-      <p>Task Description: {task.description}</p>
-      <p>Location: {task.location}</p>
-      <p>Price: {task.price}</p>
-      <p>Due Date: {task.dueDate}</p>
-      <p>Images: {task.images && task.images.map((file, index) => typeof file === 'string' ? file : file.name).join(', ')}</p>
     </div>
   )
 }
