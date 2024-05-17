@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react'
+import "./CreateTask.css"
 
 interface Task {
   title: string;
@@ -55,74 +56,112 @@ const CreateTask = () => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="title"
-            value={task.title}
-            onChange={handleInputChange}
-            placeholder="Enter task title"
-          />
-          {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
-        </div>
-        <div>
-          <textarea
-            name="description"
-            value={task.description}
-            onChange={handleInputChange}
-            placeholder="Enter task description"
-          />
-          {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
-        </div>
-        <div>
-          <input
-            type="text"
-            name="location"
-            value={task.location}
-            onChange={handleInputChange}
-            placeholder="Enter location"
-          />
-          {errors.location && <p style={{ color: 'red' }}>{errors.location}</p>}
-        </div>
-        <div>
-          <input
-            type="text"
-            name="price"
-            value={task.price}
-            onChange={handleInputChange}
-            placeholder="Enter price"
-          />
-          {errors.price && <p style={{ color: 'red' }}>{errors.price}</p>}
-        </div>
-        <div>
-          <input
-            type="date"
-            name="dueDate"
-            value={task.dueDate}
-            onChange={handleInputChange}
-            placeholder="By when should it be done"
-          />
-          {errors.dueDate && <p style={{ color: 'red' }}>{errors.dueDate}</p>}
-        </div>
-        <div>
-          <input
-            type="file"
-            name="images"
-            onChange={handleFileChange}
-            multiple
-          />
-        </div>
-        <button type="submit">Create Task</button>
+    <>
+     <div>
+          <div className='title'>Create Task</div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="create-task">
+          <div className="form-group">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              className=''
+              value={task.title}
+              onChange={handleInputChange}
+              placeholder="Enter task title"
+            />
+            {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              name="description"
+              className=''
+              value={task.description}
+              onChange={handleInputChange}
+              placeholder="Enter task description"
+            />
+            {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              name="location"
+              className=''
+              value={task.location}
+              onChange={handleInputChange}
+              placeholder="Enter location"
+            />
+            {errors.location && <p style={{ color: 'red' }}>{errors.location}</p>}
+          </div>
+
+        
+
+        
+          <div className="form-group">
+            <label htmlFor="price">Price</label>
+            <input
+              type="text"
+              name="price"
+              className=''
+              value={task.price}
+              onChange={handleInputChange}
+              placeholder="Enter price"
+            />
+            {errors.price && <p style={{ color: 'red' }}>{errors.price}</p>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="dueDate">Due Date</label>
+            <input
+              type="date"
+              name="dueDate"
+              className=''
+              value={task.dueDate}
+              onChange={handleInputChange}
+              placeholder="By when should it be done"
+            />
+            {errors.dueDate && <p style={{ color: 'red' }}>{errors.dueDate}</p>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="media">Media</label>
+            <input
+              type="file"
+              name="media"
+              className=''
+              onChange={handleFileChange}
+              multiple
+            />
+          </div>
+        
+        <button 
+          type="submit"
+          className=''
+          >Create Task</button>
       </form>
-      <p>Task Title: {task.title}</p>
-      <p>Task Description: {task.description}</p>
-      <p>Location: {task.location}</p>
-      <p>Price: {task.price}</p>
-      <p>Due Date: {task.dueDate}</p>
-      <p>Images: {task.images && task.images.map((file, index) => typeof file === 'string' ? file : file.name).join(', ')}</p>
-    </div>
+      
+      <div className="task-preview">
+        <h2>Task Preview</h2>
+        <h3>{task.title}</h3>
+        <p>{task.description}</p>
+        <p>{task.location}</p>
+        <p>{task.price}</p>
+        <p>{task.dueDate}</p>
+        <div>
+          {task.images.map((image, index) => (
+            <img
+              key={index}
+              src={typeof image === 'string' ? image : URL.createObjectURL(image)}
+              alt={`Task media ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+   
+    </>
+    
   )
 }
 
