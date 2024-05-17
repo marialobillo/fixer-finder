@@ -57,11 +57,8 @@ const CreateTask = () => {
 
   return (
     <>
-     <div>
-          <div className='title'>Create Task</div>
-      </div>
-
       <form onSubmit={handleSubmit} className="create-task">
+          <div className='title'>Create Task</div>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
