@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto"
+
 export interface TaskProps {
   id?: string
   title: string
@@ -10,7 +12,7 @@ export interface TaskProps {
 }
 
 export class Task {
-  private id?: string
+  public id?: string
   public title: string
   public description: string 
   public location: string
@@ -20,7 +22,7 @@ export class Task {
   public tags: string[]
 
   constructor({id, title, description, location, price, dueDate, media, tags }: TaskProps) {
-    this.id = id
+    this.id = id ?? randomUUID()
     this.title = title
     this.description = description
     this.location = location
