@@ -1,5 +1,5 @@
 import { Task, TaskProps } from '../entities/task'
-import { TaskRepository } from '../../infrastructure/persistence/taskRepository'
+import { TaskRepository } from '../../infrastructure/persistance/taskRepository'
 
 export class CreateTask {
   private taskRepository: TaskRepository
