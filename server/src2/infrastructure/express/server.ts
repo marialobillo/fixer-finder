@@ -1,5 +1,5 @@
 import express from 'express';
-import { TaskRepository } from '../../infrastructure/persistance/taskRepository';
+import { TaskRepository } from '../persistance/taskRepository';
 import { CreateTask } from '../../domain/usecases/createTask';
 import { createTaskController } from '../../app/controllers/taskController';
 
