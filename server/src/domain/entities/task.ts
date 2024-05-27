@@ -5,8 +5,8 @@ export interface TaskProps {
   title: string
   description: string
   location: string
-  price: number 
-  dueDate: Date 
+  price: number
+  dueDate: Date
   media: string[]
   tags: string[]
 }
@@ -14,10 +14,10 @@ export interface TaskProps {
 export class Task {
   public id?: string
   public title: string
-  public description: string 
+  public description: string
   public location: string
-  public price: number 
-  public dueDate: Date 
+  public price: number
+  public dueDate: Date
   public media: string[]
   public tags: string[]
 
