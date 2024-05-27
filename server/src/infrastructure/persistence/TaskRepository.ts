@@ -1,4 +1,5 @@
-import { Task, TaskProps } from "./../../domain/entities/Task"
+import { Task, TaskProps } from "../../domain/entities/task"
+
 
 export class TaskRepository {
   private tasks: Task[] = []

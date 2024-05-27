@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { CreateTask } from "../../domain/usecases/createTask"
+import { CreateTaskUseCase } from './../../application/use-cases/createTaskUseCase'
 
 function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
 
-export const createTaskController = async (req: Request, res: Response, createTaskUseCase: CreateTask) => {
+export const createTaskController = async (req: Request, res: Response, createTaskUseCase: CreateTaskUseCase) => {
   try {
     const taskData = req.body
     const task = await createTaskUseCase.execute(taskData)

@@ -1,15 +1,16 @@
-import { TaskRepository } from '../../infrastructure/persistance/taskRepository';
-import { CreateTask } from "./createTask";
-import { TaskProps } from "../entities/task";
+import { CreateTaskUseCase } from "../../../src/application/use-cases/createTaskUseCase"
+import { TaskProps } from "../../../src/domain/entities/task"
+import { TaskRepository } from "../../../src/infrastructure/persistence/TaskRepository"
+
 
 describe('Create Task Use Case', () => {
   let taskRepository: TaskRepository
-  let createTask: CreateTask
+  let createTaskUseCase: CreateTaskUseCase
   let taskProps: TaskProps
 
   beforeEach(() => {
     taskRepository = new TaskRepository()
-    createTask = new CreateTask(taskRepository)
+    createTaskUseCase = new CreateTaskUseCase(taskRepository)
     taskProps = {
       title: 'Task 1',
       description: 'Description of task 1',
@@ -22,7 +23,7 @@ describe('Create Task Use Case', () => {
   })
 
   it('should create a task with correct properties', async () => {
-    const task = await createTask.execute(taskProps)
+    const task = await createTaskUseCase.execute(taskProps)
 
     expect(task.title).toBe(taskProps.title);
     expect(task.description).toBe(taskProps.description);
@@ -34,8 +35,8 @@ describe('Create Task Use Case', () => {
   })
 
   it('should assign a unique id to each created task', async () => {
-    const task1 = await createTask.execute(taskProps);
-    const task2 = await createTask.execute(taskProps);
+    const task1 = await createTaskUseCase.execute(taskProps);
+    const task2 = await createTaskUseCase.execute(taskProps);
 
     expect(task1.id).not.toBeUndefined();
     expect(task2.id).not.toBeUndefined();
