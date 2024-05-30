@@ -1,14 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import "./CreateTask.css"
+import { Task } from '../types/taskTypes'
 
-interface Task {
-  title: string;
-  description: string;
-  location: string;
-  price: string;
-  dueDate: string;
-  images: (File | string)[]
-}
+
 
 const CreateTask = () => {
   const [task, setTask] = useState<Task>({
