@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import "./CreateTask.css"
 import { Task } from '../types/taskTypes'
-
+import { createTask } from '../services/taskService'
 
 
 const CreateTask = () => {
@@ -14,6 +14,8 @@ const CreateTask = () => {
     images: [],
   })
   const [errors, setErrors] = useState<Partial<Task>>({})
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target
@@ -37,20 +39,30 @@ const CreateTask = () => {
     return errors
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log('Task data:', task);
-      // Proceed with form submission (e.g., API call)
+      try {
+        await createTask(task)
+      } catch (error: unknown) {
+        setSuccess(null);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError('An unexpected error occurred.');
+        }
+      }
     }
   }
 
 
   return (
     <>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleSubmit} className="create-task">
           <div className='title'>Create Task</div>
           <div className="form-group">

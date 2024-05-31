@@ -1,13 +1,14 @@
 import axios, { isAxiosError} from 'axios'
 import { Task } from '../types/taskTypes'
 
+const baseUrl = process.env.NODE_APP_API_URL || 'http://localhost:3000'
+
 const client = axios.create({
-  baseURL: process.env.NODE_APP_API_URL,
+  baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
 })
-
 
 export const createTask = async (task: Task): Promise<Task> => {
   try {

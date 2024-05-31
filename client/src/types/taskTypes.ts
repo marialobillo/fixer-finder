@@ -5,4 +5,5 @@ export interface Task {
   price: string
   dueDate: string
   images: (File | string)[]
+  tags: string[]
 }
