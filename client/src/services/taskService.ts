@@ -1,7 +1,7 @@
 import axios, { isAxiosError} from 'axios'
 import { Task } from '../types/taskTypes'
 
-const baseUrl = process.env.NODE_APP_API_URL || 'http://localhost:3000'
+const baseUrl = 'http://localhost:3000'
 
 const client = axios.create({
   baseURL: baseUrl,

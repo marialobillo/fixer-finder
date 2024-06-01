@@ -46,7 +46,8 @@ const CreateTask = () => {
       setErrors(validationErrors);
     } else {
       try {
-        await createTask(task)
+        const response = await createTask(task)
+        console.log(response)
       } catch (error: unknown) {
         setSuccess(null);
         if (error instanceof Error) {
@@ -61,8 +62,6 @@ const CreateTask = () => {
 
   return (
     <>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleSubmit} className="create-task">
           <div className='title'>Create Task</div>
           <div className="form-group">
