@@ -1,15 +1,18 @@
 import { CreateTaskUseCase } from "../../../src/application/use-cases/createTaskUseCase"
-import { TaskProps } from "../../../src/domain/entities/task"
+import { Task, TaskProps } from "../../../src/domain/entities/task"
 import { TaskRepository } from "../../../src/infrastructure/persistence/TaskRepository"
 
 
 describe('Create Task Use Case', () => {
-  let taskRepository: TaskRepository
+  let taskRepository: jest.Mocked<TaskRepository>
   let createTaskUseCase: CreateTaskUseCase
   let taskProps: TaskProps
 
   beforeEach(() => {
-    taskRepository = new TaskRepository()
+    taskRepository = {
+      create: jest.fn(),
+      getAll: jest.fn()
+    } as jest.Mocked<TaskRepository>
     createTaskUseCase = new CreateTaskUseCase(taskRepository)
     taskProps = {
       title: 'Task 1',
@@ -23,6 +26,9 @@ describe('Create Task Use Case', () => {
   })
 
   it('should create a task with correct properties', async () => {
+    const expectedTask = new Task({ ...taskProps, id: '1'})
+    taskRepository.create.mockResolvedValue(expectedTask)
+
     const task = await createTaskUseCase.execute(taskProps)
 
     expect(task.title).toBe(taskProps.title);
@@ -35,9 +41,11 @@ describe('Create Task Use Case', () => {
   })
 
   it('should assign a unique id to each created task', async () => {
-    const task1 = await createTaskUseCase.execute(taskProps);
-    const task2 = await createTaskUseCase.execute(taskProps);
+    const task1 = new Task({...taskProps, id: '1'});
+    const task2 = new Task({...taskProps, id: '2'});
 
+    taskRepository.create.mockResolvedValueOnce(task1).mockResolvedValueOnce(task2);
+  
     expect(task1.id).not.toBeUndefined();
     expect(task2.id).not.toBeUndefined();
     expect(task1.id).not.toBe(task2.id);

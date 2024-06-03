@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const createTaskUseCase_1 = require("../../../src/application/use-cases/createTaskUseCase");
-const TaskRepository_1 = require("../../../src/infrastructure/persistence/TaskRepository");
 describe('Create Task Use Case', () => {
     let taskRepository;
     let createTaskUseCase;
     let taskProps;
     beforeEach(() => {
-        taskRepository = new TaskRepository_1.TaskRepository();
+        taskRepository = {
+            create: jest.fn(),
+            getAll: jest.fn()
+        };
         createTaskUseCase = new createTaskUseCase_1.CreateTaskUseCase(taskRepository);
         taskProps = {
             title: 'Task 1',

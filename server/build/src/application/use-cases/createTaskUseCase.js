@@ -6,8 +6,8 @@ class CreateTaskUseCase {
         this.taskRepository = taskRepository;
     }
     async execute(taskData) {
-        const task = this.taskRepository.create(taskData);
-        return await this.taskRepository.save(task);
+        const task = await this.taskRepository.create(taskData);
+        return task;
     }
 }
 exports.CreateTaskUseCase = CreateTaskUseCase;
