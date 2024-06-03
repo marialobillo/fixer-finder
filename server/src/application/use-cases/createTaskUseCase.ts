@@ -9,7 +9,7 @@ export class CreateTaskUseCase {
   }
 
   async execute(taskData: TaskProps): Promise<Task> {
-    const task = this.taskRepository.create(taskData)
-    return await this.taskRepository.save(task)
+    const task = await this.taskRepository.create(taskData)
+    return task
   }
 }
