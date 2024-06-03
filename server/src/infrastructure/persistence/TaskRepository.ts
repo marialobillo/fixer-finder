@@ -5,7 +5,7 @@ import { Pool } from 'pg'
 export class TaskRepository {
   private tasks: Task[] = []
 
-  constructor(private db: Pool) {}
+  constructor() {}
 
   create(taskData: TaskProps): Task {
     const task = new Task({ ...taskData})
@@ -18,7 +18,6 @@ export class TaskRepository {
   }
 
   async getAll(): Promise<Task[]> {
-    const result = await this.db.query('SELECT * FROM tasks')
-    return result.rows.map((task: TaskProps) => new Task(task))
+    return this.tasks
   }
 }
