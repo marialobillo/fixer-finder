@@ -27,7 +27,7 @@ export class PostgreSQLClient {
       const res = await client.query(query, params)
       return res.rows 
     } catch (error) {
-      
+      console.log('Error executing query: ', error)
     } finally {
       client.release()
     }

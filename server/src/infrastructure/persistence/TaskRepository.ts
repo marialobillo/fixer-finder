@@ -1,23 +1,12 @@
 import { Task, TaskProps } from "../../domain/entities/task"
-import { Pool } from 'pg'
 
 
-export class TaskRepository {
-  private tasks: Task[] = []
 
-  constructor() {}
+export interface TaskRepository {
 
-  create(taskData: TaskProps): Task {
-    const task = new Task({ ...taskData})
-    return task
-  }
+  create(taskData: TaskProps): Promise<Task> 
 
-  async save(task: Task): Promise<Task> {
-    this.tasks.push(task)
-    return task
-  }
+  // save(task: TaskProps): Promise<Task> 
 
-  async getAll(): Promise<Task[]> {
-    return this.tasks
-  }
+  getAll(): Promise<Task[]> 
 }
