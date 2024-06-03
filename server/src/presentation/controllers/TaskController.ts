@@ -7,7 +7,7 @@ function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
 
-export class createTaskController {
+export class TaskController {
   private createTaskUseCase: CreateTaskUseCase
   private getAllTaskUseCase: GetAllTasksUseCase
 
