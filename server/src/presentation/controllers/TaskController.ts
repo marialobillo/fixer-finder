@@ -3,10 +3,22 @@ import { CreateTaskUseCase } from './../../application/use-cases/createTaskUseCa
 import { TaskRepository } from '../../infrastructure/persistence/TaskRepository';
 import { GetAllTasksUseCase } from '../../application/use-cases/getAllTasksUserCase';
 import { PostgreSQLTaskRepository } from '../../infrastructure/database/postgresql/PostgreSQLTaskRepository';
+import Joi from 'joi';
 
 function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
+
+const taskSchema = Joi.object({
+  id: Joi.string().optional(),
+  title: Joi.string().required(),
+  description: Joi.string().required(),
+  location: Joi.string().required(),
+  price: Joi.number().required(),
+  dueDate: Joi.date().required(),
+  media: Joi.array().items(Joi.string()).required(),
+  tags: Joi.array().items(Joi.string()).required()
+})
 
 export class TaskController {
   private createTaskUseCase: CreateTaskUseCase
@@ -21,6 +33,10 @@ export class TaskController {
 
   async createTask(req: Request, res: Response): Promise<void> {
     try {
+      const { error } = taskSchema.validate(req.body)
+      if(error) {
+        res.status(400).json({ message: error.message })
+      }
       const taskData = req.body
       const task = await this.createTaskUseCase.execute(taskData)
       res.status(201).json(task)

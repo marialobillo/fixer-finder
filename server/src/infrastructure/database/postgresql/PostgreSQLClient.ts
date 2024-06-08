@@ -9,8 +9,8 @@ export class PostgreSQLClient {
       user: 'postgres',
       host: 'localhost',
       database: 'foreasybooking', 
-      password: 'postgres',
-      port: 5432,
+      password: 'foreasybooking',
+      port: 5433,
     })
   }
 
