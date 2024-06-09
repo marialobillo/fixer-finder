@@ -23,10 +23,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("./infrastructure/express/app");
+exports.PostgreSQLClient = void 0;
+const pg_1 = require("pg");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-const PORT = process.env.APP_PORT || 3000;
-app_1.app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+class PostgreSQLClient {
+    constructor() {
+        this.pool = new pg_1.Pool({
+            user: process.env.PG_USER,
+            host: process.env.PG_HOST,
+            database: process.env.PG_DATABASE,
+            password: process.env.PG_PASSWORD,
+            port: process.env.PG_PORT ? parseInt(process.env.PG_PORT, 10) : 5433,
+        });
+    }
+    static getInstance() {
+        if (!PostgreSQLClient.instance) {
+            PostgreSQLClient.instance = new PostgreSQLClient();
+        }
+        return PostgreSQLClient.instance;
+    }
+    async query(query, params) {
+        const client = await this.pool.connect();
+        try {
+            const res = await client.query(query, params);
+            return res;
+        }
+        catch (error) {
+            console.log('Error executing query: ', error);
+        }
+        finally {
+            client.release();
+        }
+    }
+}
+exports.PostgreSQLClient = PostgreSQLClient;
