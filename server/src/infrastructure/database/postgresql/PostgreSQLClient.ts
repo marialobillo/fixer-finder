@@ -28,7 +28,7 @@ export class PostgreSQLClient {
     const client = await this.pool.connect()
     try {
       const res = await client.query(query, params)
-      return res.rows 
+      return res
     } catch (error) {
       console.log('Error executing query: ', error)
     } finally {
