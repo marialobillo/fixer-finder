@@ -9,9 +9,10 @@ class PostgreSQLTaskRepository {
     }
     async getAll() {
         const result = await this.client.query('SELECT * FROM tasks');
-        return result.map((task) => new task_1.Task(task));
+        return result.rows.map((task) => new task_1.Task(task));
     }
-    async create(task) {
+    async create(taskProps) {
+        const task = new task_1.Task(taskProps);
         const result = await this.client.query('INSERT INTO tasks (id, title, description, location, price, dueDate, media, tags) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', [
             task.id,
             task.title,

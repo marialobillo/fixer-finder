@@ -1,4 +1,4 @@
-import { Task } from "../../../domain/entities/task";
+import { Task, TaskProps } from "../../../domain/entities/task";
 import { TaskRepository } from "../../persistence/TaskRepository";
 import { PostgreSQLClient } from "./PostgreSQLClient";
 
@@ -12,11 +12,12 @@ export class PostgreSQLTaskRepository implements TaskRepository {
 
   async getAll(): Promise<Task[]> {
     const result = await this.client.query('SELECT * FROM tasks')
-    return result.map((task: any) => new Task(task))
+    return result.rows.map((task: any) => new Task(task))
   }
 
-  async create(task: Task) {
-    
+  async create(taskProps: TaskProps): Promise<Task> {
+    const task = new Task(taskProps)
+
     const result = await this.client.query(
       'INSERT INTO tasks (id, title, description, location, price, dueDate, media, tags) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
       [
