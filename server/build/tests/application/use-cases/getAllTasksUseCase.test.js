@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const getAllTasksUserCase_1 = require("../../../src/application/use-cases/getAllTasksUserCase");
+const getAllTasksUseCase_1 = require("../../../src/application/use-cases/getAllTasksUseCase");
 describe('Get All Tasks Use Case', () => {
     let taskRepository;
     let getAllTasksUseCase;
@@ -10,7 +10,7 @@ describe('Get All Tasks Use Case', () => {
             create: jest.fn(),
             getAll: jest.fn()
         };
-        getAllTasksUseCase = new getAllTasksUserCase_1.GetAllTasksUseCase(taskRepository);
+        getAllTasksUseCase = new getAllTasksUseCase_1.GetAllTasksUseCase(taskRepository);
         taskProps = {
             title: 'Task 1',
             description: 'Description of task 1',

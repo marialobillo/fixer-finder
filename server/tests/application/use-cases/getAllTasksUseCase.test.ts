@@ -1,4 +1,4 @@
-import { GetAllTasksUseCase } from "../../../src/application/use-cases/getAllTasksUserCase"
+import { GetAllTasksUseCase } from "../../../src/application/use-cases/getAllTasksUseCase"
 import { TaskProps } from "../../../src/domain/entities/task"
 import { TaskRepository } from "../../../src/infrastructure/persistence/TaskRepository"
 
