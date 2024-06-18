@@ -12,6 +12,7 @@ const CreateTask = () => {
     price: '',
     dueDate: '',
     images: [],
+    tags: []
   })
   const [errors, setErrors] = useState<Partial<Task>>({})
   const [error, setError] = useState<string | null>(null)
@@ -137,13 +138,11 @@ const CreateTask = () => {
               multiple
             />
           </div>
-        
         <button 
           type="submit"
           className=''
           >Create Task</button>
       </form>
-      
       <div className="task-preview">
         <h2>Task Preview</h2>
         <h3>{task.title}</h3>
@@ -167,4 +166,5 @@ const CreateTask = () => {
   )
 }
 
-export default CreateTask
+
+
