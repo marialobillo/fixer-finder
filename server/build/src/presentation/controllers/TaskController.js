@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskController = void 0;
 const createTaskUseCase_1 = require("./../../application/use-cases/createTaskUseCase");
-const getAllTasksUserCase_1 = require("../../application/use-cases/getAllTasksUserCase");
+const getAllTasksUseCase_1 = require("../../application/use-cases/getAllTasksUseCase");
 const PostgreSQLTaskRepository_1 = require("../../infrastructure/database/postgresql/PostgreSQLTaskRepository");
 const joi_1 = __importDefault(require("joi"));
 function isError(error) {
@@ -25,7 +25,7 @@ class TaskController {
     constructor() {
         const taskRepository = new PostgreSQLTaskRepository_1.PostgreSQLTaskRepository();
         this.createTaskUseCase = new createTaskUseCase_1.CreateTaskUseCase(taskRepository);
-        this.getAllTaskUseCase = new getAllTasksUserCase_1.GetAllTasksUseCase(taskRepository);
+        this.getAllTaskUseCase = new getAllTasksUseCase_1.GetAllTasksUseCase(taskRepository);
     }
     async createTask(req, res) {
         try {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { CreateTaskUseCase } from './../../application/use-cases/createTaskUseCase'
-import { GetAllTasksUseCase } from '../../application/use-cases/getAllTasksUserCase';
+import { GetAllTasksUseCase } from '../../application/use-cases/getAllTasksUseCase';
 import { PostgreSQLTaskRepository } from '../../infrastructure/database/postgresql/PostgreSQLTaskRepository';
 import Joi from 'joi';
 
