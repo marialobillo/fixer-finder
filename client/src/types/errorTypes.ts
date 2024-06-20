@@ -1,0 +1,1 @@
+export type GlobalErrorType = { message: string} | null;

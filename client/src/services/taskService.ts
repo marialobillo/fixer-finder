@@ -1,7 +1,7 @@
 import axios, { isAxiosError} from 'axios'
 import { Task } from '../types/taskTypes'
 
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'http://localhost:4000'
 
 const client = axios.create({
   baseURL: baseUrl,
@@ -24,3 +24,16 @@ export const createTask = async (task: Task): Promise<Task> => {
     }
   }
 }
+
+export const getAllTasks = async () => {
+  try {
+    const response = await client.get<Task[]>('/tasks');
+    if (!response.data) {
+      throw new Error('Failed to fetch tasks');
+    }
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    throw error; 
+  }
+};
