@@ -10,6 +10,7 @@ function App() {
      <Routes>
      <Route path="/" element={<GetAllTasks />} />
       <Route path="/create-task" element={<CreateTask />} />
+      <Route path="/tasks" element={<CreateTask />} />
      </Routes>
     </>
   )
