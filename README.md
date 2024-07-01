@@ -1,6 +1,6 @@
-# For Easy Booking
+# Fixer Finder
 
-For Easy Booking is a web application that allows users to book appointments with service providers. The application is built with React, Node.js, Express, and MongoDB.
+Fixer Finder is a web application that allows users to book appointments with service providers. The application is built with React, Node.js, Express, and Postgresql.
 
 ## Installation
 
