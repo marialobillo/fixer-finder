@@ -1,6 +1,3 @@
-import React from 'react'
- 
-
 import { useState, useEffect } from 'react'
 import { Task } from '../types/taskTypes'
 import { getAllTasks } from '../services/taskService'
