@@ -8,3 +8,8 @@ export interface Task {
   images: (File | string)[]
   tags: string[]
 }
+
+export interface FetchTasksParams {
+  tags?: string;
+  search?: string;
+}
