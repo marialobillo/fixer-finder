@@ -40,7 +40,7 @@ export const getAllTasks = async () => {
 
 export const getTasksByCriteria = async (params: FetchTasksParams): Promise<Task[]> => {
   try {
-    const response = await axios.get('/api/tasks', { params });
+    const response = await axios.get('/tasks', { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);
