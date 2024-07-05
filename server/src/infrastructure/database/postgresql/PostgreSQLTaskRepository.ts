@@ -10,8 +10,22 @@ export class PostgreSQLTaskRepository implements TaskRepository {
     this.client = PostgreSQLClient.getInstance()
   }
 
-  async getAll(): Promise<Task[]> {
-    const result = await this.client.query('SELECT * FROM tasks')
+  async getAll(tags?: string[], search?: string): Promise<Task[]> {
+    let query = 'SELECT * FROM tasks'
+    const conditions: string[] = []
+    const values: any[] = []
+    if (tags && tags.length > 0) {
+      conditions.push(`tags @> $${conditions.length + 1}`)
+      values.push(JSON.stringify(tags))
+    }
+    if(search) {
+      conditions.push(`title ILIKE $${conditions.length + 1} OR description ILIKE $${conditions.length + 1} OR location ILIKE $${conditions.length + 1}`)
+      values.push(`%${search}%`)
+    }
+    if(conditions.length > 0) {
+      query += ` WHERE ${conditions.join(' AND ')}`
+    }
+    const result = await this.client.query(query, values)
     return result.rows.map((task: any) => new Task(task))
   }
 

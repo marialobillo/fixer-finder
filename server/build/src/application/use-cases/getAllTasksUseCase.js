@@ -5,8 +5,8 @@ class GetAllTasksUseCase {
     constructor(taskRepository) {
         this.taskRepository = taskRepository;
     }
-    async execute() {
-        return await this.taskRepository.getAll();
+    async execute(params) {
+        return await this.taskRepository.getAll(params);
     }
 }
 exports.GetAllTasksUseCase = GetAllTasksUseCase;
