@@ -1,5 +1,5 @@
 import axios, { isAxiosError} from 'axios'
-import { Task } from '../types/taskTypes'
+import { Task, FetchTasksParams } from '../types/taskTypes'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -35,5 +35,15 @@ export const getAllTasks = async () => {
   } catch (error) {
     console.error('Error fetching tasks:', error);
     throw error; 
+  }
+};
+
+export const getTasksByCriteria = async (params: FetchTasksParams): Promise<Task[]> => {
+  try {
+    const response = await axios.get('/tasks', { params });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    throw error;
   }
 };

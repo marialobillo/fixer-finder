@@ -1,10 +1,3 @@
-import React from 'react'
-
-const GetAllTasks = () => {
-  return (
-    <div>
-      
-
 import { useState, useEffect } from 'react'
 import { Task } from '../types/taskTypes'
 import { getAllTasks } from '../services/taskService'
