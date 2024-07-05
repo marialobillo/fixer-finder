@@ -12,7 +12,7 @@ function App() {
      <Route path="/" element={<GetAllTasks />} />
       <Route path="/create-task" element={<CreateTask />} />
       <Route path="/tasks" element={<CreateTask />} />
-      <Route path="/for-professionals" element={<TaskListForProfessionals />} />
+      <Route path="/tasks/filter" element={<TaskListForProfessionals />} />
      </Routes>
     </>
   )
