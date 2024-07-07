@@ -7,7 +7,8 @@ class PostgreSQLTaskRepository {
     constructor() {
         this.client = PostgreSQLClient_1.PostgreSQLClient.getInstance();
     }
-    async getAll(tags, search) {
+    async getAll(params) {
+        const { tags, search } = params;
         let query = 'SELECT * FROM tasks';
         const conditions = [];
         const values = [];
@@ -19,9 +20,11 @@ class PostgreSQLTaskRepository {
             conditions.push(`title ILIKE $${conditions.length + 1} OR description ILIKE $${conditions.length + 1} OR location ILIKE $${conditions.length + 1}`);
             values.push(`%${search}%`);
         }
+        console.log('Conditions:', conditions);
         if (conditions.length > 0) {
             query += ` WHERE ${conditions.join(' AND ')}`;
         }
+        console.log('Query:', query);
         const result = await this.client.query(query, values);
         return result.rows.map((task) => new task_1.Task(task));
     }

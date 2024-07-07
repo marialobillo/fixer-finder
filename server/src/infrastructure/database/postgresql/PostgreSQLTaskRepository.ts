@@ -1,3 +1,4 @@
+import { FetchTasksParams } from "../../../application/use-cases/getAllTasksUseCase";
 import { Task, TaskProps } from "../../../domain/entities/task";
 import { TaskRepository } from "../../persistence/TaskRepository";
 import { PostgreSQLClient } from "./PostgreSQLClient";
@@ -10,7 +11,8 @@ export class PostgreSQLTaskRepository implements TaskRepository {
     this.client = PostgreSQLClient.getInstance()
   }
 
-  async getAll(tags?: string[], search?: string): Promise<Task[]> {
+  async getAll(params: FetchTasksParams): Promise<Task[]> {
+    const { tags, search } = params
     let query = 'SELECT * FROM tasks'
     const conditions: string[] = []
     const values: any[] = []
@@ -22,9 +24,11 @@ export class PostgreSQLTaskRepository implements TaskRepository {
       conditions.push(`title ILIKE $${conditions.length + 1} OR description ILIKE $${conditions.length + 1} OR location ILIKE $${conditions.length + 1}`)
       values.push(`%${search}%`)
     }
+    console.log('Conditions:', conditions)
     if(conditions.length > 0) {
       query += ` WHERE ${conditions.join(' AND ')}`
     }
+    console.log('Query:', query)
     const result = await this.client.query(query, values)
     return result.rows.map((task: any) => new Task(task))
   }

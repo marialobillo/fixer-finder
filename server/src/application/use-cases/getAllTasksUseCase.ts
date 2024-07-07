@@ -1,6 +1,10 @@
 import { Task } from '../../domain/entities/task'
 import { TaskRepository } from './../../infrastructure/persistence/TaskRepository'
-import { FetchTasksParams } from './../../infrastructure/persistence/TaskRepository'
+
+export interface FetchTasksParams {
+  tags?: string
+  search?: string
+}
 
 export class GetAllTasksUseCase {
   private taskRepository: TaskRepository
@@ -10,6 +14,7 @@ export class GetAllTasksUseCase {
   }
 
   async execute(params: FetchTasksParams): Promise<Task[]> {
+    console.log('on the use case:', params)
     return await this.taskRepository.getAll(params)
   }
 }
