@@ -5,7 +5,7 @@ export interface Task {
   location: string
   price: string
   dueDate: string
-  images: (File | string)[]
+  images: (string)[]
   tags: string[]
 }
 
