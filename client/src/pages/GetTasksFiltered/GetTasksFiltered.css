@@ -11,13 +11,14 @@ h1 {
 }
 
 .filters {
+  width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
 .filter-input {
-  width: 200px;
+  width: 40%;
   padding: 10px;
   margin: 0 10px;
   border: 1px solid #ddd;

@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Task } from '../../types/taskTypes'
 import { getTasksByCriteria } from '../../services/taskService'
+import './GetTasksFiltered.css'
 
 const GetTasksFiltered = () => {
   const [tasks, setTasks] = useState<Task[]>([])
   const [tags, setTags] = useState<string>('')
   const [search, setSearch] = useState<string>('')
-
-  // console.log('tags:', tags)
 
   const loadTasksByCriteria = async () => {
     try {
@@ -22,11 +21,9 @@ const GetTasksFiltered = () => {
     loadTasksByCriteria()
   }, [tags, search])
 
-  console.log('tasks:', tasks, 'tasks length:', tasks.length)
-
   return (
     <div className="tasks-container">
-      <h1>Task List for Professionals</h1>
+      <h1>Filtered Tasks</h1>
 
       <div className="filters">
         <input
