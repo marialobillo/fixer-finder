@@ -14,7 +14,6 @@ export class GetAllTasksUseCase {
   }
 
   async execute(params: FetchTasksParams): Promise<Task[]> {
-    console.log('on the use case:', params)
     return await this.taskRepository.getAll(params)
   }
 }
