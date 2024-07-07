@@ -25,35 +25,42 @@ const GetTasksFiltered = () => {
   console.log('tasks:', tasks, 'tasks length:', tasks.length)
 
   return (
-    <div>
+    <div className="tasks-container">
       <h1>Task List for Professionals</h1>
 
-      <div>
+      <div className="filters">
         <input
-          type='text'
-          placeholder='Search...'
+          type="text"
+          placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="filter-input"
         />
         <input
-          type='text'
-          placeholder='Tags (comma separated)...'
+          type="text"
+          placeholder="Tags (comma separated)..."
           value={tags}
           onChange={(e) => setTags(e.target.value)}
+          className="filter-input"
         />
       </div>
-
       <div>
         {tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
-          <ul>
+          <ul className="tasks-list">
             {tasks.map((task) => (
-              <li key={task.id}>
-                <h2>{task.title}</h2>
-                <p>{task.description}</p>
-                <p>Tags: {task.tags.join(', ')}</p>
-                <p>Location: {task.location}</p>
+              <li key={task.id} className="task-item">
+                <h2 className="task-title">{task.title}</h2>
+                <p className="task-description">{task.description}</p>
+                <p className="task-location">Location: {task.location}</p>
+                <p className="task-price">Price: {task.price}</p>
+                <p className="task-dueDate">Due Date: {task.dueDate}</p>
+                <div className="task-tags">
+                  {task.tags.map((tag, index) => (
+                    <span key={index} className="task-tag">{tag}</span>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
