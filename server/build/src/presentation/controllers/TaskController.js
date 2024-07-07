@@ -48,7 +48,8 @@ class TaskController {
     }
     async getAllTask(req, res) {
         try {
-            const tasks = await this.getAllTaskUseCase.execute();
+            const { tags, search } = req.query;
+            const tasks = await this.getAllTaskUseCase.execute({ tags: tags, search: search });
             res.status(200).json(tasks);
         }
         catch (error) {
