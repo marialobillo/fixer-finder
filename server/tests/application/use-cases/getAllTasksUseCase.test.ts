@@ -1,4 +1,4 @@
-import { GetAllTasksUseCase } from "../../../src/application/use-cases/getAllTasksUseCase"
+import { FetchTasksParams, GetAllTasksUseCase } from "../../../src/application/use-cases/getAllTasksUseCase"
 import { TaskProps } from "../../../src/domain/entities/task"
 import { TaskRepository } from "../../../src/infrastructure/persistence/TaskRepository"
 
@@ -33,7 +33,8 @@ describe('Get All Tasks Use Case', () => {
     ]
     taskRepository.getAll.mockResolvedValue(expectedTasks)
     
-    const tasks = await getAllTasksUseCase.execute()
+    const params: FetchTasksParams = {}
+    const tasks = await getAllTasksUseCase.execute(params)
 
     expect(tasks.length).toBe(2)
     expect(tasks[0].title).toBe(expectedTasks[0].title)
@@ -43,7 +44,8 @@ describe('Get All Tasks Use Case', () => {
   it('should return empty array if there are no tasks', async () => {
     taskRepository.getAll.mockResolvedValue([])
 
-    const tasks = await getAllTasksUseCase.execute()
+    const params: FetchTasksParams = {}
+    const tasks = await getAllTasksUseCase.execute(params)
 
     expect(tasks.length).toBe(0)
   })
