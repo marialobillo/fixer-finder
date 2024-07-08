@@ -65,4 +65,17 @@ describe('Get All Tasks Use Case', () => {
     expect(tasks[1].tags).toContain('tag2')
   })
 
+  it('shoud return filtered tasks by search and no tags attribute', async () => {
+    const expectedTasks = [
+      { ...taskProps, id: '1', title: 'Task 1' },
+      { ...taskProps, id: '2', title: 'Task 2' },
+    ]
+    taskRepository.getAll.mockResolvedValue(expectedTasks)
+
+    const params: FetchTasksParams = { search: 'Task 1' }
+    const tasks = await getAllTasksUseCase.execute(params)
+
+    expect(tasks[0].title).toBe('Task 1')
+  })
+
 })
