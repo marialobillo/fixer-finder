@@ -30,20 +30,20 @@ export class TaskController {
   }
 
 
-  async createTask(req: Request, res: Response): Promise<void> {
+  async createTask(req: Request, res: Response): Promise<Response | void>  {
     try {
       const { error } = taskSchema.validate(req.body)
       if(error) {
-        res.status(400).json({ message: error.message })
+        return res.status(400).json({ message: error.message })
       }
       const taskData = req.body
       const task = await this.createTaskUseCase.execute(taskData)
       res.status(201).json(task)
     } catch (error: unknown) {
       if(isError(error)) {
-        res.status(500).json({ message: error.message})
+        return res.status(500).json({ message: error.message})
       } else {
-        res.status(500).json({ message: 'An unexpected error occurred.'})
+        return res.status(500).json({ message: 'An unexpected error occurred.'})
       }
     }
   }
