@@ -1,6 +1,11 @@
 import { Task } from '../../domain/entities/task'
 import { TaskRepository } from './../../infrastructure/persistence/TaskRepository'
 
+export interface FetchTasksParams {
+  tags?: string
+  search?: string
+}
+
 export class GetAllTasksUseCase {
   private taskRepository: TaskRepository
 
@@ -8,7 +13,7 @@ export class GetAllTasksUseCase {
     this.taskRepository = taskRepository
   }
 
-  async execute(): Promise<Task[]> {
-    return await this.taskRepository.getAll()
+  async execute(params: FetchTasksParams): Promise<Task[]> {
+    return await this.taskRepository.getAll(params)
   }
 }

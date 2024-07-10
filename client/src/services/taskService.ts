@@ -1,4 +1,4 @@
-import axios, { isAxiosError} from 'axios'
+import axios, { isAxiosError } from 'axios'
 import { Task, FetchTasksParams } from '../types/taskTypes'
 
 const baseUrl = 'http://localhost:4000'
@@ -15,10 +15,10 @@ export const createTask = async (task: Task): Promise<Task> => {
     const response = await client.post<Task>('/tasks', task)
     return response.data
   } catch (error) {
-    if(isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.log(error.status)
       console.error(error.response)
-      throw new Error(error.response?.data.message || 'Failed to create task');
+      throw new Error(error.response?.data.message || 'Failed to create task')
     } else {
       throw new Error('Unexpected error occurred')
     }
@@ -27,20 +27,27 @@ export const createTask = async (task: Task): Promise<Task> => {
 
 export const getAllTasks = async () => {
   try {
-    const response = await client.get<Task[]>('/tasks');
+    const response = await client.get<Task[]>('/tasks')
     if (!response.data) {
-      throw new Error('Failed to fetch tasks');
+      throw new Error('Failed to fetch tasks')
     }
-    return response.data; 
+    return response.data
   } catch (error) {
-    console.error('Error fetching tasks:', error);
-    throw error; 
+    console.error('Error fetching tasks:', error)
+    throw error
   }
-};
+}
+
 
 export const getTasksByCriteria = async (params: FetchTasksParams): Promise<Task[]> => {
   try {
-    const response = await axios.get('/tasks', { params });
+    const { tags, search } = params;
+    const response = await client.get<Task[]>('/tasks', {
+      params: {
+        tags: tags ? tags.split(',').map(tag => tag.trim()) : undefined,
+        search: search || undefined,
+      }
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);

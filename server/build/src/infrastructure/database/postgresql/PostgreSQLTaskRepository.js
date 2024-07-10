@@ -7,8 +7,23 @@ class PostgreSQLTaskRepository {
     constructor() {
         this.client = PostgreSQLClient_1.PostgreSQLClient.getInstance();
     }
-    async getAll() {
-        const result = await this.client.query('SELECT * FROM tasks');
+    async getAll(params) {
+        const { tags, search } = params;
+        let query = 'SELECT * FROM tasks';
+        const conditions = [];
+        const values = [];
+        if (tags && tags.length > 0) {
+            conditions.push(`tags @> $${conditions.length + 1}`);
+            values.push(JSON.stringify(tags));
+        }
+        if (search) {
+            conditions.push(`title ILIKE $${conditions.length + 1} OR description ILIKE $${conditions.length + 1} OR location ILIKE $${conditions.length + 1}`);
+            values.push(`%${search}%`);
+        }
+        if (conditions.length > 0) {
+            query += ` WHERE ${conditions.join(' AND ')}`;
+        }
+        const result = await this.client.query(query, values);
         return result.rows.map((task) => new task_1.Task(task));
     }
     async create(taskProps) {
@@ -23,7 +38,6 @@ class PostgreSQLTaskRepository {
             JSON.stringify(task.media),
             JSON.stringify(task.tags)
         ]);
-        console.log('Query result:', result);
         if (!result || !result.rows || result.rows.length === 0) {
             throw new Error('Failed to create task, no data returned');
         }

@@ -31,7 +31,7 @@ class TaskController {
         try {
             const { error } = taskSchema.validate(req.body);
             if (error) {
-                return res.status(400).json({ message: error.message });
+                res.status(400).json({ message: error.message });
             }
             const taskData = req.body;
             const task = await this.createTaskUseCase.execute(taskData);
@@ -39,17 +39,16 @@ class TaskController {
         }
         catch (error) {
             if (isError(error)) {
-                return res.status(500).json({ message: error.message });
+                res.status(500).json({ message: error.message });
             }
             else {
-                return res.status(500).json({ message: 'An unexpected error occurred.' });
+                res.status(500).json({ message: 'An unexpected error occurred.' });
             }
         }
     }
     async getAllTask(req, res) {
         try {
-            const { tags, search } = req.query;
-            const tasks = await this.getAllTaskUseCase.execute({ tags: tags, search: search });
+            const tasks = await this.getAllTaskUseCase.execute();
             res.status(200).json(tasks);
         }
         catch (error) {

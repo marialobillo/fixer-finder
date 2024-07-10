@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import './CreateTask.css'
-import { Task } from '../types/taskTypes'
-import { createTask } from '../services/taskService'
+import './NewTask.css'
+import { Task } from '../../types/taskTypes'
+import { createTask } from '../../services/taskService'
 
-const CreateTask = () => {
+const NewTask = () => {
   const [task, setTask] = useState<Task>({
     title: '',
     description: '',
@@ -153,4 +153,4 @@ const CreateTask = () => {
 }
 
 
-export default CreateTask
+export default NewTask

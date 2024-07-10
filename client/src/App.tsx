@@ -1,19 +1,17 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import CreateTask from './pages/CreateTask'
 import GetAllTasks from './pages/GetAllTasks'
-import TaskListForProfessionals from './pages/TaskListForProfessionals'
-
+import NewTask from './pages/NewTask'
+import TaskFilter from './pages/TaskFilter'
 
 function App() {
   return (
     <>
-     <Routes>
-     <Route path="/" element={<GetAllTasks />} />
-      <Route path="/create-task" element={<CreateTask />} />
-      <Route path="/tasks" element={<CreateTask />} />
-      <Route path="/for-professionals" element={<TaskListForProfessionals />} />
-     </Routes>
+      <Routes>
+        <Route path='/' element={<GetAllTasks />} />
+        <Route path='/newtask' element={<NewTask />} />
+        <Route path='/taskfilter' element={<TaskFilter />} />
+      </Routes>
     </>
   )
 }
