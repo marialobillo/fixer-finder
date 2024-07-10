@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Task } from '../../types/taskTypes'
 import { getTasksByCriteria } from '../../services/taskService'
-import './GetTasksFiltered.css'
+import './TaskFilter.css'
 
-const GetTasksFiltered = () => {
+const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
   const [tags, setTags] = useState<string>('')
   const [search, setSearch] = useState<string>('')
@@ -67,4 +67,4 @@ const GetTasksFiltered = () => {
   )
 }
 
-export default GetTasksFiltered
+export default TaskFilter

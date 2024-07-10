@@ -1,8 +1,8 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import GetAllTasks from './pages/GetAllTasks'
-import GetTasksFiltered from './pages/GetTasksFiltered'
 import NewTask from './pages/NewTask'
+import TaskFilter from './pages/TaskFilter'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<GetAllTasks />} />
         <Route path='/newtask' element={<NewTask />} />
-        <Route path='/tasks/filter' element={<GetTasksFiltered />} />
+        <Route path='/taskfilter' element={<TaskFilter />} />
       </Routes>
     </>
   )
