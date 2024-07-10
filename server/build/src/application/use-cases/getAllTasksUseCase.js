@@ -6,7 +6,6 @@ class GetAllTasksUseCase {
         this.taskRepository = taskRepository;
     }
     async execute(params) {
-        console.log('on the use case:', params);
         return await this.taskRepository.getAll(params);
     }
 }

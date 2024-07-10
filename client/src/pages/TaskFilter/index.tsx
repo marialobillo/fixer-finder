@@ -7,13 +7,17 @@ const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
   const [tags, setTags] = useState<string>('')
   const [search, setSearch] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
 
   const loadTasksByCriteria = async () => {
+    setLoading(true)
     try {
       const fetchedTasks = await getTasksByCriteria({ tags, search })
       setTasks(fetchedTasks)
     } catch (error) {
       console.log('Error fetching tasks: ', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -42,7 +46,9 @@ const TaskFilter = () => {
         />
       </div>
       <div>
-        {tasks.length === 0 ? (
+      {loading ? (
+          <p>Loading tasks...</p>
+        ) : tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
           <ul className="tasks-list">

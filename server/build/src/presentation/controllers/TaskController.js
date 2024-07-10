@@ -31,7 +31,7 @@ class TaskController {
         try {
             const { error } = taskSchema.validate(req.body);
             if (error) {
-                res.status(400).json({ message: error.message });
+                return res.status(400).json({ message: error.message });
             }
             const taskData = req.body;
             const task = await this.createTaskUseCase.execute(taskData);
@@ -39,10 +39,10 @@ class TaskController {
         }
         catch (error) {
             if (isError(error)) {
-                res.status(500).json({ message: error.message });
+                return res.status(500).json({ message: error.message });
             }
             else {
-                res.status(500).json({ message: 'An unexpected error occurred.' });
+                return res.status(500).json({ message: 'An unexpected error occurred.' });
             }
         }
     }
