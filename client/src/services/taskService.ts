@@ -41,18 +41,13 @@ export const getAllTasks = async () => {
 
 export const getTasksByCriteria = async (params: FetchTasksParams): Promise<Task[]> => {
   try {
-    console.log('Params:', params)
     const { tags, search } = params;
-    console.log('tags FEFEFE:', tags)
-    console.log('search FEFEFE:', search)
     const response = await client.get<Task[]>('/tasks', {
       params: {
         tags: tags ? tags.split(',').map(tag => tag.trim()) : undefined,
         search: search || undefined,
       }
     });
-
-    console.log('Response from getTasksByCriteria:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);
