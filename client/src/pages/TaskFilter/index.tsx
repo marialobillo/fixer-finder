@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Task } from '../../types/taskTypes'
 import { getTasksByCriteria } from '../../services/taskService'
 import './TaskFilter.css'
+import { debounce } from 'lodash';
+
 
 const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -21,8 +23,10 @@ const TaskFilter = () => {
     }
   }
 
+  const debouncedLoadTasks = debounce(loadTasksByCriteria, 300)
+
   useEffect(() => {
-    loadTasksByCriteria()
+    debouncedLoadTasks(tags, search)
   }, [tags, search])
 
   return (
