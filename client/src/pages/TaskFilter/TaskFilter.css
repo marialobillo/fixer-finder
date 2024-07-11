@@ -37,6 +37,9 @@ h1 {
   padding: 20px;
   margin: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .task-title {
@@ -69,4 +72,18 @@ h1 {
   padding: 5px 10px;
   margin-right: 5px;
   font-size: 0.9em;
+}
+
+.make-offer-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.make-offer-button:hover {
+  background-color: #218838;
 }

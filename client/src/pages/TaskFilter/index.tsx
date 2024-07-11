@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { Task } from '../../types/taskTypes'
 import { getTasksByCriteria } from '../../services/taskService'
 import './TaskFilter.css'
-import { debounce } from 'lodash';
-
+import { debounce } from 'lodash'
 
 const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -29,45 +28,56 @@ const TaskFilter = () => {
     debouncedLoadTasks(tags, search)
   }, [tags, search])
 
+  const handleMakeOffer = (taskId: string) => {
+    console.log('Make offer for task: ', taskId)
+  }
+
   return (
-    <div className="tasks-container">
+    <div className='tasks-container'>
       <h1>Filtered Tasks</h1>
 
-      <div className="filters">
+      <div className='filters'>
         <input
-          type="text"
-          placeholder="Search..."
+          type='text'
+          placeholder='Search...'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="filter-input"
+          className='filter-input'
         />
         <input
-          type="text"
-          placeholder="Tags (comma separated)..."
+          type='text'
+          placeholder='Tags (comma separated)...'
           value={tags}
           onChange={(e) => setTags(e.target.value)}
-          className="filter-input"
+          className='filter-input'
         />
       </div>
       <div>
-      {loading ? (
+        {loading ? (
           <p>Loading tasks...</p>
         ) : tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
-          <ul className="tasks-list">
+          <ul className='tasks-list'>
             {tasks.map((task) => (
-              <li key={task.id} className="task-item">
-                <h2 className="task-title">{task.title}</h2>
-                <p className="task-description">{task.description}</p>
-                <p className="task-location">Location: {task.location}</p>
-                <p className="task-price">Price: {task.price}</p>
-                <p className="task-dueDate">Due Date: {task.dueDate}</p>
-                <div className="task-tags">
-                  {task.tags.map((tag, index) => (
-                    <span key={index} className="task-tag">{tag}</span>
-                  ))}
+              <li key={task.id} className='task-item'>
+                <div className='task-details'>
+                  <h2 className='task-title'>{task.title}</h2>
+                  <p className='task-description'>{task.description}</p>
+                  <p className='task-location'>Location: {task.location}</p>
+                  <p className='task-price'>Price: {task.price}</p>
+                  <p className='task-dueDate'>Due Date: {task.dueDate}</p>
+                  <div className='task-tags'>
+                    {task.tags.map((tag, index) => (
+                      <span key={index} className='task-tag'>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+                <button onClick={() => handleMakeOffer(task.id)} className='make-offer-button'>
+                  Make offer
+                </button>
               </li>
             ))}
           </ul>
