@@ -25,6 +25,20 @@ h1 {
   border-radius: 5px;
 }
 
+.content {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.task-list-container {
+  width: 50%;
+}
+
+.offer-form-container {
+  width: 45%;
+}
+
 .tasks-list {
   list-style-type: none;
   padding: 0;
