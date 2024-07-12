@@ -27,7 +27,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
     offer_status: ''
   })
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setOfferData({
       ...offerData,
       [event.target.name]: event.target.value
