@@ -1,50 +1,49 @@
-.offer-form-container {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 30px;
+.offer-form-content {
+  background-color: #ecf0f1; /* White Smoke */
+  border: 1px solid #bdc3c7; /* Light Gray */
+  border-radius: 40px;
   margin: 20px 0;
+  padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Helvetica Neue', Arial, sans-serif;
   transition: box-shadow 0.3s ease;
+ 
 }
 
-.offer-form-container:hover {
+.offer-form-content:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.offer-form-container h2 {
+.offer-form-content h2 {
   margin-bottom: 20px;
   font-size: 1.5em;
-  color: #333;
-  border-bottom: 2px solid #007bff;
+  color: #2c3e50; /* Dark Gray */
+  border-bottom: 2px solid #3498db; /* Blue */
   padding-bottom: 10px;
 }
 
-.offer-form-container textarea,
-.offer-form-container input {
-  width: 100%;
+.offer-form-content textarea,
+.offer-form-content input {
+  width: 95%;
   padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #bdc3c7; /* Light Gray */
   border-radius: 5px;
   font-size: 1em;
   transition: border-color 0.3s ease;
 }
 
-.offer-form-container textarea:focus,
-.offer-form-container input:focus {
-  border-color: #007bff;
+.offer-form-content textarea:focus,
+.offer-form-content input:focus {
+  border-color: #3498db; /* Blue */
   outline: none;
 }
 
-.offer-form-content {
-  padding: 20px;
-}
+
 
 .submit-offer-btn,
 .cancel-offer-btn {
-  background-color: #007bff;
+  background-color: #3498db; /* Blue */
   color: #fff;
   border: none;
   padding: 12px 20px;
@@ -56,14 +55,13 @@
 }
 
 .submit-offer-btn:hover {
-  background-color: #0056b3;
+  background-color: #2980b9; /* Dark Blue */
 }
 
 .cancel-offer-btn {
-  background-color: #dc3545;
- 
+  background-color: #e74c3c; /* Red */
 }
 
 .cancel-offer-btn:hover {
-  background-color: #c82333;
+  background-color: #c0392b; /* Dark Red */
 }
