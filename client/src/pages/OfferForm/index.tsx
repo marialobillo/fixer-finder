@@ -18,7 +18,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
     offer_media: '',
     posting_time: '',
     price: '',
-    offer_status: ''
+    offer_status: 'pending'
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -74,7 +74,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
           required
         />
         <input
-          type="text"
+          type="hidden"
           name="offer_status"
           placeholder="Offer Status"
           value={offerData.offer_status}

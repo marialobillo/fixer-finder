@@ -105,10 +105,10 @@ const TaskFilter = () => {
 
         {showForm && selectedTask && (
           <div className='offer-form-container'>
-            <OfferForm 
-              task={selectedTask} 
-              onSubmit={handleFormSubmit} 
-              onCancel={handleFormCancel} 
+            <OfferForm
+              task={selectedTask}
+              onSubmit={handleFormSubmit}
+              onCancel={handleFormCancel}
             />
           </div>
         )}
