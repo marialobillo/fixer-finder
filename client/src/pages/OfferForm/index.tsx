@@ -1,13 +1,7 @@
 import { useState }from 'react'
 import './OfferForm.css'
+import { OfferData } from '../../types/offerTypes'
 
-interface OfferData {
-  offer_description: string
-  offer_media: string
-  posting_time: string
-  price: string
-  offer_status: string
-}
 
 interface OfferFormProps {
   task: {

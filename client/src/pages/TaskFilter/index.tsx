@@ -4,6 +4,7 @@ import { getTasksByCriteria } from '../../services/taskService'
 import './TaskFilter.css'
 import { debounce } from 'lodash'
 import OfferForm from '../OfferForm'
+import { OfferData } from '../../types/offerTypes'
 
 const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -38,7 +39,7 @@ const TaskFilter = () => {
     setShowForm(true)
   }
 
-  const handleFormSubmit = async (offerPayload: any) => {
+  const handleFormSubmit = async (offerPayload: OfferData) => {
     console.log('Submitting offer: ', offerPayload)
     setShowForm(false)
     setSelectedTask(null)
