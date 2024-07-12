@@ -101,7 +101,6 @@ const TaskFilter = () => {
             </ul>
           )}
         </div>
-        
 
         {showForm && selectedTask && (
           <div className='offer-form-container'>
@@ -111,7 +110,6 @@ const TaskFilter = () => {
               onCancel={handleFormCancel} 
             />
           </div>
-          
         )}
       </div>
     </div>

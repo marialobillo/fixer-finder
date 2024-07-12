@@ -1,11 +1,20 @@
 import { useState }from 'react'
+import './OfferForm.css'
+
+interface OfferData {
+  offer_description: string
+  offer_media: string
+  posting_time: string
+  price: string
+  offer_status: string
+}
 
 interface OfferFormProps {
   task: {
     id: string
     title: string
   }
-  onSubmit: (offerData: any) => void
+  onSubmit: (offerData: OfferData) => void
   onCancel: () => void
 }
 
@@ -36,7 +45,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
   }
 
   return (
-    <div className="offer-form-container">
+    <div className="offer-form-content">
       <h2>Make an Offer for {task.title}</h2>
       <form onSubmit={handleSubmit}>
         <textarea
