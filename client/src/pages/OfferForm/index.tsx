@@ -45,7 +45,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
       posting_time: offerData.posting_time,
       price: offerData.price,
       offer_status: offerData.offer_status,
-      offer_media: offerData.offer_media ? offerData.offer_media.name : null,
+      offer_media: offerData.offer_media,
     }
 
     onSubmit(offerPayload)
