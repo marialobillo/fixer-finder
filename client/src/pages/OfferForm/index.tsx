@@ -37,7 +37,6 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
     const offerPayload = {
       job_id: task.id,
       worker_id: '1',
@@ -47,7 +46,6 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
       offer_status: offerData.offer_status,
       offer_media: offerData.offer_media,
     }
-
     onSubmit(offerPayload)
   }
 

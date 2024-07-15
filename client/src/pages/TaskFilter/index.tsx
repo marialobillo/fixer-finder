@@ -27,28 +27,22 @@ const TaskFilter = () => {
     }
   }, [])
 
-  //const debouncedLoadTasks = useCallback(debounce(loadTasksByCriteria, 300), [loadTasksByCriteria])
-
   useEffect(() => {
     const debouncedLoadTasks = debounce((tags: string, search: string) => {
       loadTasksByCriteria(tags, search);
     }, 300);
-
     debouncedLoadTasks(tags, search);
-
     return () => {
       debouncedLoadTasks.cancel(); // Cancel the debounced function on cleanup
     };
   }, [tags, search, loadTasksByCriteria]);
 
   const handleMakeOfferClick = (task: Task) => {
-    console.log('Make offer for task: ', task.id)
     setSelectedTask(task)
     setShowForm(true)
   }
 
   const handleFormSubmit = async (offerPayload: OfferData) => {
-    console.log('Submitting offer: ', offerPayload)
     setShowForm(false)
     setSelectedTask(null)
   }
