@@ -87,8 +87,8 @@ h1 {
   font-size: 0.9em;
 }
 
-.make-offer-button {
-  background-color: #28a745; /* Green */
+.make-offer-btn {
+  background-color: #f39c12; /* Orange */
   color: #fff;
   border: none;
   padding: 10px 20px;
