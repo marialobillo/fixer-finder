@@ -28,23 +28,22 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null
-    setOfferData({
-      ...offerData,
-      offer_media: file,
-    })
+    const files = event.target.files ? event.target.files[0] : null
+    if(files) {
+      setOfferData((prevData) => ({
+        ...prevData,
+        offer_media: files,
+      }))
+    }
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const offerPayload = {
+      ...offerData,
+      posting_time: new Date().toISOString(),
       job_id: task.id,
       worker_id: '1',
-      offer_description: offerData.offer_description,
-      posting_time: offerData.posting_time,
-      price: offerData.price,
-      offer_status: offerData.offer_status,
-      offer_media: offerData.offer_media,
     }
     onSubmit(offerPayload)
   }
@@ -53,6 +52,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
     <div className='offer-form-content'>
       <h2>Make an Offer for {task.title}</h2>
       <form onSubmit={handleSubmit}>
+      <label htmlFor="offer_description">Description</label>
         <textarea
           name='offer_description'
           placeholder='Offer Description'
@@ -60,6 +60,7 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
           onChange={handleChange}
           required
         />
+        <label htmlFor="offer_media">Upload Media</label>
         <input
           type='file'
           name='offer_media'
@@ -68,14 +69,16 @@ const OfferForm = ({ task, onSubmit, onCancel }: OfferFormProps) => {
           onChange={handleFileChange}
           required
         />
+        
         <input
-          type='datetime-local'
+          type='hidden'
           name='posting_time'
           placeholder='Posting Time'
           value={offerData.posting_time}
           onChange={handleChange}
           required
         />
+        <label htmlFor="price">Price</label>
         <input
           type='number'
           name='price'
