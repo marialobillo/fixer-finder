@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Task } from '../../types/taskTypes'
 import { getTasksByCriteria } from '../../services/taskService'
 import './TaskFilter.css'
@@ -15,23 +15,31 @@ const TaskFilter = () => {
   const [showForm, setShowForm] = useState<boolean>(false)
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
 
-  const loadTasksByCriteria = async () => {
-    setLoading(true)
+  const loadTasksByCriteria = useCallback(async (tags: string, search: string) => {
+    setLoading(true);
     try {
-      const fetchedTasks = await getTasksByCriteria({ tags, search })
-      setTasks(fetchedTasks)
+      const fetchedTasks = await getTasksByCriteria({ tags, search });
+      setTasks(fetchedTasks);
     } catch (error) {
-      console.log('Error fetching tasks: ', error)
+      console.log('Error fetching tasks: ', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  }, [])
 
-  const debouncedLoadTasks = debounce(loadTasksByCriteria, 300)
+  //const debouncedLoadTasks = useCallback(debounce(loadTasksByCriteria, 300), [loadTasksByCriteria])
 
   useEffect(() => {
-    debouncedLoadTasks(tags, search)
-  }, [tags, search])
+    const debouncedLoadTasks = debounce((tags: string, search: string) => {
+      loadTasksByCriteria(tags, search);
+    }, 300);
+
+    debouncedLoadTasks(tags, search);
+
+    return () => {
+      debouncedLoadTasks.cancel(); // Cancel the debounced function on cleanup
+    };
+  }, [tags, search, loadTasksByCriteria]);
 
   const handleMakeOfferClick = (task: Task) => {
     console.log('Make offer for task: ', task.id)
