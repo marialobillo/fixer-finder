@@ -2,11 +2,11 @@
   width: 90%;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 h1 {
-  color: #333;
+  color: #2c3e50; /* Dark Gray */
   text-align: center;
 }
 
@@ -21,8 +21,21 @@ h1 {
   width: 40%;
   padding: 10px;
   margin: 0 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #bdc3c7; /* Light Gray */
   border-radius: 5px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-list-container {
+  width: 50%;
+}
+
+.offer-form-container {
+  width: 45%;
 }
 
 .tasks-list {
@@ -31,29 +44,32 @@ h1 {
 }
 
 .task-item {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #ecf0f1; /* White Smoke */
+  border: 1px solid #bdc3c7; /* Light Gray */
   border-radius: 5px;
   padding: 20px;
   margin: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .task-title {
-  color: #007BFF;
+  color: #3498db; /* Blue */
   font-size: 1.5em;
   margin-bottom: 10px;
 }
 
 .task-description {
-  color: #555;
+  color: #555555; /* Dark Gray for description */
   margin-bottom: 10px;
 }
 
 .task-location,
 .task-price,
 .task-dueDate {
-  color: #888;
+  color: #888888; /* Gray */
   margin-bottom: 5px;
 }
 
@@ -63,10 +79,24 @@ h1 {
 
 .task-tag {
   display: inline-block;
-  background-color: #FFA500;
+  background-color: #f39c12; /* Orange */
   color: #fff;
   border-radius: 3px;
   padding: 5px 10px;
   margin-right: 5px;
   font-size: 0.9em;
+}
+
+.make-offer-btn {
+  background-color: #f39c12; /* Orange */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.make-offer-button:hover {
+  background-color: #218838; /* Dark Green */
 }
