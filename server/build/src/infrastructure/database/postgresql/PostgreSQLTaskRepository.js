@@ -41,7 +41,18 @@ class PostgreSQLTaskRepository {
         if (!result || !result.rows || result.rows.length === 0) {
             throw new Error('Failed to create task, no data returned');
         }
-        return new task_1.Task(result.rows[0]);
+        const dbTask = result.rows[0];
+        const taskRow = {
+            id: dbTask.id,
+            title: dbTask.title,
+            description: dbTask.description,
+            location: dbTask.location,
+            price: dbTask.price,
+            dueDate: dbTask.duedate,
+            media: dbTask.media,
+            tags: dbTask.tags,
+        };
+        return new task_1.Task(taskRow);
     }
 }
 exports.PostgreSQLTaskRepository = PostgreSQLTaskRepository;
