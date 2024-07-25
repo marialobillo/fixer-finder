@@ -5,6 +5,7 @@ import './TaskFilter.css'
 import { debounce } from 'lodash'
 import OfferForm from '../OfferForm'
 import { OfferData } from '../../types/offerTypes'
+import { createOffer } from '../../services/offerService'
 
 const TaskFilter = () => {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -43,8 +44,17 @@ const TaskFilter = () => {
   }
 
   const handleFormSubmit = async (offerPayload: OfferData) => {
-    setShowForm(false)
-    setSelectedTask(null)
+    try {
+      setShowForm(false)
+      setSelectedTask(null)
+      const response = await createOffer(offerPayload)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(error.message)
+      } else {
+        console.error('An unexpected error occurred.')
+      }
+    }
   }
 
   const handleFormCancel = () => {

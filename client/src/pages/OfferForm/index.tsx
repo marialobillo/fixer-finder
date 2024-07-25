@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './OfferForm.css'
 import { OfferData } from '../../types/offerTypes'
 
+
 interface OfferFormProps {
   task: {
     id: string

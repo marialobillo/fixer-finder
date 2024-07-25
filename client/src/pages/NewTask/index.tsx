@@ -47,7 +47,6 @@ const NewTask = () => {
     } else {
       try {
         const response = await createTask(task)
-        console.log(response)
       } catch (error: unknown) {
         setSuccess(null)
         if (error instanceof Error) {
