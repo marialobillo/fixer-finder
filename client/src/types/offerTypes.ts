@@ -9,3 +9,7 @@ export interface OfferData {
   posting_time: string
   price: string
 }
+
+export interface Offer extends OfferData {
+  id: string
+}
