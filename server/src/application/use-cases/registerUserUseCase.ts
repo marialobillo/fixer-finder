@@ -1,41 +1,29 @@
-import { User } from '../../domain/user';
-
-
-
-interface RegisterUserRequest {
-    username: string
-    email: string
-    password: string
-    role: string
-}
+import { User, UserProps } from '../../domain/entities/user';
+import { UserRepository } from '../../infrastructure/persistence/UserRepository';
 
 export class RegisterUserUseCase {
-    constructor(
-      private userRepository: UserRepository,
-      private hasher: IHasher
-    ) {
+  private userRepository: UserRepository
+  private hasher: IHasher 
+
+  constructor(userRepository: UserRepository, hasher: IHasher) {
+    this.userRepository = userRepository
+    this.hasher = hasher
+  }
+
+  async execute(userData: UserProps): Promise<User> {
+    const { email, password } = userData
+
+    const existingUser = await this.userRepository.findByEmail(email)
+    if(existingUser) {
+      throw new Error('User already exists')
     }
+    const hashedPassword = await this.hasher.hash(password)
+    const newUser = new User({
+      ...userData,
+      password: hashedPassword
+    })
+    await this.userRepository.save(newUser)
+    return newUser
+  }
+} 
 
-
-    async execute(request: RegisterUserRequest): Promise<User> {
-        const { username, email, password, role } = request
-
-        const existingUser = await this.userRepository.findByEmail(email)
-        if (existingUser) {
-            throw new Error('User already exists')
-        }
-
-        const hashedPassword = await this.hasher.hash(password)
-
-        const user = new User(
-          Date.now().toString(),
-          username,
-          email, 
-          hashedPassword,
-        )
-
-        await this.userRepository.save(user)
-        
-        return user
-    }
-}
