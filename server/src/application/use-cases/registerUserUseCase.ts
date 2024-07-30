@@ -1,9 +1,10 @@
 import { User, UserProps } from '../../domain/entities/user';
 import { UserRepository } from '../../infrastructure/persistence/UserRepository';
+import { IHasher } from '../../services/hasher';
 
 export class RegisterUserUseCase {
   private userRepository: UserRepository
-  private hasher: IHasher 
+  private hasher: IHasher
 
   constructor(userRepository: UserRepository, hasher: IHasher) {
     this.userRepository = userRepository
