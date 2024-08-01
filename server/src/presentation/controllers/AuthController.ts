@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import Joi from 'joi';
 import { RegisterUserUseCase } from '../../application/use-cases/registerUserUseCase';
-import { PostgreAQRepository } from '../../infrastructure/database/postgresql/PostgreAQRepository';
-import { BcryptHasher } from '../../services/hasher';
+import { PostgreSQLUserRepository } from '../../infrastructure/database/postgresql/PostgreSQLUserRepository';
+import { BryptHasher} from '../../infrastructure/security/bcryptHasher';
 
 function isError(error: unknown): error is Error {
   return error instanceof Error;
@@ -19,8 +19,8 @@ export class AuthController {
   private registerUserUseCase: RegisterUserUseCase;
 
   constructor() {
-    const userRepository = new PostgreAQRepository();
-    const hasher = new BcryptHasher();
+    const userRepository = new PostgreSQLUserRepository();
+    const hasher = new BryptHasher();
     this.registerUserUseCase = new RegisterUserUseCase(userRepository, hasher);
   }
 
@@ -30,7 +30,6 @@ export class AuthController {
       if (error) {
         return res.status(400).json({ message: error.message });
       }
-      
       const userData = req.body;
       const user = await this.registerUserUseCase.execute(userData);
       res.status(201).json(user);
