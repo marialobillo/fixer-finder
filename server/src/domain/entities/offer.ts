@@ -8,7 +8,7 @@ export interface OfferProps {
     price: number
     offerStatus: string
     jobId: string
-    workerId: number
+    workerId: string
 }
 
 export class Offer {
@@ -19,7 +19,7 @@ export class Offer {
     public price: number
     public offerStatus: string
     public jobId: string
-    public workerId: number
+    public workerId: string
 
     constructor({ id, offerDescription, offerMedia, postingTime, price, offerStatus, jobId, workerId }: OfferProps) {
         this.id = id ?? randomUUID();
