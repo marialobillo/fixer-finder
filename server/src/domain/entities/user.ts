@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 
 export interface UserProps {
     id?: string;
