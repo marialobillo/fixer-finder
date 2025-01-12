@@ -21,8 +21,8 @@ export class User {
         this.createdAt = createdAt ?? new Date();
     }
 
-    async hashPassword(): Promise<void> {
-        this.password = await bcrypt.hash(this.password, 10);
+    static async hashPassword(password: string): Promise<string> {
+        return await bcrypt.hash(password, 10);
     }
 
     async verifyPassword(password: string): Promise<boolean> {
