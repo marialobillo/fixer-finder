@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { User } from '../../domain/entities/user';
 import Joi from 'joi';
 import { CreateUserUseCase } from '../../application/use-cases/createUserUseCase';
 import { PostgreSQLUserRepository } from '../../infrastructure/database/postgresql/PostgreSQLUserRepository';
