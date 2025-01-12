@@ -5,4 +5,5 @@ export interface UserRepository {
     findByEmail(email: string): Promise<User | null>
     udpatePassword(userId: string, password: string): Promise<void>
     findById(userId: string): Promise<User | null>
+    createIfNotExists(userData: UserProps): Promise<User>
 }

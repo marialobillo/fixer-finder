@@ -44,4 +44,13 @@ export class PostgreSQLUserRepository {
             createdAt: row.created_at
         });
     }
+
+    async createIfNotExists(user: UserProps): Promise<Omit<UserProps, 'password'>> { 
+        const existingUser = await this.findByEmail(user.email);
+        if (existingUser) {
+            throw new Error('User already exists');
+        }
+        const createdUser = await this.create(user);
+        return createdUser;
+    }
 }
