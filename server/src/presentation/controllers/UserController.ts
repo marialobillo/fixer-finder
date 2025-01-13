@@ -24,6 +24,7 @@ export class UserController {
 
     async createUser(req: Request, res: Response): Promise<Response | void> {
         try {
+            console.log('Creating user...', req.body);
             const { error } = UserSchema.validate(req.body);
             if (error) {
                 return res.status(400).json({ message: error.message });

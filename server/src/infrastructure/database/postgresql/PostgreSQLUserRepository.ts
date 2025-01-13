@@ -18,6 +18,7 @@ export class PostgreSQLUserRepository {
         if (!result || !result.rows || result.rows.length === 0) {
             throw new Error('Failed to create user, no data returned');
         }
+        console.log("User Controlleer", result)
         const row = result.rows[0];
         return new User({
             id: row.id,
