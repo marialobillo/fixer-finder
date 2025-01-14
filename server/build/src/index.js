@@ -25,14 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("./infrastructure/express/app");
 const dotenv = __importStar(require("dotenv"));
+const migrations_1 = require("./infrastructure/database/migrations");
 dotenv.config();
-const PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.APP_PORT || 4000;
+console.log('***** PORT SERVER...', PORT);
 async function startServer() {
     try {
-        console.log('Running Migrations...');
-        //await runMigrations()
+        console.log('***** Running Migrations...');
+        await (0, migrations_1.runMigrations)();
         app_1.app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
+            console.log(`***** Server is running on port ${PORT}`);
         });
     }
     catch (error) {

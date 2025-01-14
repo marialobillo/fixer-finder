@@ -21,3 +21,7 @@ app.post('/tasks', (req, res) => taskController.createTask(req, res));
 app.get('/tasks', (req, res) => taskController.getAllTask(req, res));
 app.post('/offers', (req, res) => offerController.createOffer(req, res));
 app.post('/users', (req, res) => userController.createUser(req, res));
+app.get('/hello', (req, res) => {
+    console.log('Hello World');
+    res.send('Hello World!');
+});

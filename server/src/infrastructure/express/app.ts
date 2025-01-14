@@ -21,4 +21,9 @@ app.post('/offers', (req, res) => offerController.createOffer(req, res));
 
 app.post('/users', (req, res) => userController.createUser(req, res));
 
+app.get('/hello', (req, res) => {
+    console.log('Hello World');
+    res.send('Hello World!')
+});
+
 export { app };
