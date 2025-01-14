@@ -10,11 +10,10 @@ class PostgreSQLUserRepository {
     async create(user) {
         const userInstance = new user_1.User(user);
         const hashedPassword = await userInstance.hashPassword();
-        const result = await this.client.query("INSERT INTO users (id, email, password, created_at) VALUES ($1, $2, $3, $4)", [user.id, user.email, hashedPassword, user.createdAt]);
+        const result = await this.client.query("INSERT INTO users (id, email, password, created_at) VALUES ($1, $2, $3, $4) RETURNING *", [user.id, user.email, hashedPassword, user.createdAt]);
         if (!result || !result.rows || result.rows.length === 0) {
             throw new Error('Failed to create user, no data returned');
         }
-        console.log("User Controlleer", result);
         const row = result.rows[0];
         return new user_1.User({
             id: row.id,
