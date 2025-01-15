@@ -6,22 +6,23 @@ interface LoginRequest {
     password: string;
 }
 
-interface LoginResponse { 
+interface LoginUserResponse {
     token: string;
 }
 
-export class LoginUserUseCase { 
+export class LoginUserUseCase {
     constructor(private userRepository: UserRepository) { }
 
-    async execute(request: LoginRequest): Promise<LoginResponse> {
+    async execute(request: LoginRequest): Promise<LoginUserResponse> {
         const { email, password } = request;
-        
+
         const user = await this.userRepository.findByEmail(email);
         if (!user) {
             throw new Error('User not found');
         }
 
         const isPassworValid = await user.verifyPassword(password);
+        console.log('isPassworValid', isPassworValid);
         if (!isPassworValid) {
             throw new Error('Invalid password');
         }
@@ -29,7 +30,7 @@ export class LoginUserUseCase {
         const token = jwt.sign(
             { id: user.id, email: user.email },
             process.env.JWT_SECRET!,
-            { expiresIn: '1h'});
+            { expiresIn: '2h'});
 
         return { token };
     }

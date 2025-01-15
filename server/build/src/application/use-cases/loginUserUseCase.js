@@ -16,10 +16,11 @@ class LoginUserUseCase {
             throw new Error('User not found');
         }
         const isPassworValid = await user.verifyPassword(password);
+        console.log('isPassworValid', isPassworValid);
         if (!isPassworValid) {
             throw new Error('Invalid password');
         }
-        const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
         return { token };
     }
 }

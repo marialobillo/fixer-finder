@@ -38,6 +38,7 @@ export class PostgreSQLUserRepository {
         }
 
         const row = result.rows[0];
+        console.log('row', row.email, row.password);
         return new User({
             id: row.id,
             email: row.email,
