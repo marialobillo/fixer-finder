@@ -16,7 +16,6 @@ class LoginUserUseCase {
             throw new Error('User not found');
         }
         const isPassworValid = await user.verifyPassword(password);
-        console.log('isPassworValid', isPassworValid);
         if (!isPassworValid) {
             throw new Error('Invalid password');
         }

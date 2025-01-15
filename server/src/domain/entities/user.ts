@@ -26,7 +26,6 @@ export class User {
     }
 
     async verifyPassword(password: string): Promise<boolean> {
-        console.log('password', password, this.password);
         return bcrypt.compare(password, this.password);
     }
 }

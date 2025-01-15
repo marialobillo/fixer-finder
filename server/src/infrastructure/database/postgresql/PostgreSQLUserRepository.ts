@@ -32,13 +32,10 @@ export class PostgreSQLUserRepository {
             "SELECT * FROM users WHERE email = $1",
             [email]
         );
-
         if (result.rows.length === 0) {
             return null;
         }
-
         const row = result.rows[0];
-        console.log('row', row.email, row.password);
         return new User({
             id: row.id,
             email: row.email,

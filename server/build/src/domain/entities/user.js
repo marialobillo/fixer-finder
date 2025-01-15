@@ -17,7 +17,6 @@ class User {
         return this.password = await bcryptjs_1.default.hash(this.password, 10);
     }
     async verifyPassword(password) {
-        console.log('password', password, this.password);
         return bcryptjs_1.default.compare(password, this.password);
     }
 }

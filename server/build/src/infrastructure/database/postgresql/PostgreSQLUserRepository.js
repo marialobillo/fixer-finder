@@ -28,7 +28,6 @@ class PostgreSQLUserRepository {
             return null;
         }
         const row = result.rows[0];
-        console.log('row', row.email, row.password);
         return new user_1.User({
             id: row.id,
             email: row.email,

@@ -45,15 +45,15 @@ export class UserController {
 
     async loginUser(req: Request, res: Response): Promise<Response | void> {
         try {
-            console.log('Logging in user...', req.body);
             const { email, password } = req.body;
             if (!email || !password) {
                 return res.status(400).json({ message: 'Email and password are required.' });
             }
-            // Login logic here
-            const token = await this.loginUserUseCase.execute({ email, password });
-            res.status(200).json({ message: 'Login successful' });
-
+            const { token }  = await this.loginUserUseCase.execute({ email, password });
+            res.status(200).json({
+                message: 'Login successful',
+                token,
+            });
         } catch (error: unknown) {
             if (isError(error)) {
                 return res.status(500).json({ message: error.message });
