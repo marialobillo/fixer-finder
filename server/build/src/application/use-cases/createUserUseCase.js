@@ -9,7 +9,6 @@ class CreateUserUseCase {
     async execute(request) {
         const { email, password } = request;
         const user = new user_1.User({ email, password });
-        await user.hashPassword();
         const createdUser = await this.userRepository.createIfNotExists(user);
         return {
             id: createdUser.id,
