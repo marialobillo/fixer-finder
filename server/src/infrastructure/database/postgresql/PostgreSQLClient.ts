@@ -1,5 +1,6 @@
 import { Pool } from 'pg'
 import * as dotenv from 'dotenv'
+import { logger } from '../../../logger'
 
 dotenv.config()
 
@@ -30,7 +31,7 @@ export class PostgreSQLClient {
       const res = await client.query(query, params)
       return res
     } catch (error) {
-      console.log('Error executing query: ', error)
+      logger.error('Error executing query: ', error)
     } finally {
       client.release()
     }

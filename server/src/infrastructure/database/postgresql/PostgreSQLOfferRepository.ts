@@ -1,6 +1,7 @@
 import { OfferRepository } from "../../persistence/OfferRepository";
 import { Offer, OfferProps } from "../../../domain/entities/offer";
 import { PostgreSQLClient } from "./PostgreSQLClient";
+import { logger } from "../../../logger";
 
 
 export class PostgreSQLOfferRepository implements OfferRepository {
@@ -26,6 +27,7 @@ export class PostgreSQLOfferRepository implements OfferRepository {
       ]
     );
     if (!result || !result.rows || result.rows.length === 0) {
+      logger.error('Failed to create offer, no data returned')
       throw new Error('Failed to create offer, no data returned')
     }
     const dbOffer = result.rows[0];

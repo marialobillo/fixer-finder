@@ -7,18 +7,29 @@ import { UserController } from '../../presentation/controllers/UserController';
 import compression from 'compression';
 import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs'
+import { loggerMiddleware } from './../../logger';
 
 const swaggerDocument = YAML.load('./swagger.yaml')
+const swaggerOptions = {
+    explorer: true,
+    swaggerOptions: {
+        url: '/api-docs/swagger.json'
+    }
+}
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+// Compress all responses
 app.use(compression({
     level: 6,
     threshold: 1
 }))
+// Swagger docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(loggerMiddleware);
+
 
 const taskController = new TaskController();
 const offerController = new OfferController();

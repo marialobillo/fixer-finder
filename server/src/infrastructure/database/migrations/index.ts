@@ -2,6 +2,7 @@ import { PostgreSQLClient } from './../postgresql/PostgreSQLClient';
 import { createUsersTable } from './createUsersTable';
 import { createOffersTable } from './createOffersTable';
 import { createTasksTable } from './createTasksTable';
+import { logger } from './../../../logger';
 
 async function runMigrations() { 
     const dbClient = PostgreSQLClient.getInstance();
@@ -16,6 +17,7 @@ async function runMigrations() {
         try { 
             console.log(`Running migration: ${migration.name}`);
             await dbClient.query(migration.query);
+            logger.info(`Migration completed Successfully - ${migration.name}`);
             console.log(`Migration completed Successfully - ${migration.name}`)
         } catch (error) {
             console.error(`Failed to run migration: ${migration.name}`, error);
