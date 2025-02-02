@@ -1,5 +1,6 @@
 import { UserRepository } from './../../infrastructure/persistence/UserRepository';
 import jwt from 'jsonwebtoken';
+import { logger } from '../../logger';
 
 interface LoginRequest {
     email: string;
@@ -17,10 +18,12 @@ export class LoginUserUseCase {
         const { email, password } = request;
         const user = await this.userRepository.findByEmail(email);
         if (!user) {
+            logger.error('User not found');
             throw new Error('User not found');
         }
         const isPassworValid = await user.verifyPassword(password);
         if (!isPassworValid) {
+            logger.error('Invalid password');
             throw new Error('Invalid password');
         }
         const token = jwt.sign(

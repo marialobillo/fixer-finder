@@ -1,5 +1,6 @@
 import { User, UserProps } from '../../../domain/entities/user';
 import { PostgreSQLClient } from './PostgreSQLClient';
+import { logger } from '../../../logger';
 
 export class PostgreSQLUserRepository {
     private client: PostgreSQLClient;
@@ -16,6 +17,7 @@ export class PostgreSQLUserRepository {
             [user.id, user.email, hashedPassword, user.createdAt]
         );
         if (!result || !result.rows || result.rows.length === 0) {
+            logger.error('Failed to create user, no data returned');
             throw new Error('Failed to create user, no data returned');
         }
         const row = result.rows[0];

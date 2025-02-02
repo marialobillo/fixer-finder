@@ -1,5 +1,6 @@
 import { FetchTasksParams } from "../../../application/use-cases/getAllTasksUseCase";
 import { Task, TaskProps } from "../../../domain/entities/task";
+import { logger } from "../../../logger";
 import { TaskRepository } from "../../persistence/TaskRepository";
 import { PostgreSQLClient } from "./PostgreSQLClient";
 
@@ -47,6 +48,7 @@ export class PostgreSQLTaskRepository implements TaskRepository {
       ]
     );
     if (!result || !result.rows || result.rows.length === 0) {
+      logger.error('Failed to create task, no data returned')
       throw new Error('Failed to create task, no data returned')
     }
     const dbTask = result.rows[0];
