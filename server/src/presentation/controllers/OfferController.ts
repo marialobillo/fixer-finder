@@ -5,7 +5,6 @@ import { CreateOfferUseCase } from '../../application/use-cases/createOfferUseCa
 import { PostgreSQLOfferRepository } from '../../infrastructure/database/postgresql/PostgreSQLOfferRepository';
 import { logger } from '../../logger';
 
-
 function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
