@@ -4,11 +4,21 @@ import cors from 'cors';
 import { TaskController } from '../../presentation/controllers/TaskController';
 import { OfferController } from '../../presentation/controllers/OfferController';
 import { UserController } from '../../presentation/controllers/UserController';
+import compression from 'compression';
+import swaggerUi from 'swagger-ui-express'
+import YAML from 'yamljs'
+
+const swaggerDocument = YAML.load('./swagger.yaml')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use(compression({
+    level: 6,
+    threshold: 1
+}))
 
 const taskController = new TaskController();
 const offerController = new OfferController();
