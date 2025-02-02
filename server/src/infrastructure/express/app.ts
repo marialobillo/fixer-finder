@@ -8,6 +8,7 @@ import compression from 'compression';
 import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs'
 import { loggerMiddleware } from './../../logger';
+import actuator from 'express-actuator';
 
 const swaggerDocument = YAML.load('./swagger.yaml')
 const swaggerOptions = {
@@ -29,6 +30,7 @@ app.use(compression({
 // Swagger docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(loggerMiddleware);
+app.use(actuator());
 
 
 const taskController = new TaskController();
