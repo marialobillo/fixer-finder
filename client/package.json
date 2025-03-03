@@ -12,6 +12,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "lodash": "^4.17.21",
