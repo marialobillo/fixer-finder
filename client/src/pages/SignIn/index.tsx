@@ -1,11 +1,11 @@
-import { useAuth0 } from '@auth0/auth0-react'
-import { useEffect } from 'react'
+import { useAuthActions } from "./../../hooks/useAuthActions";
+import { useEffect } from "react";
 
 const SignIn = () => {
-    const { loginWithRedirect } = useAuth0();
+    const { login } = useAuthActions();
 
     useEffect(() => {
-        loginWithRedirect();
+        login();
     }, []);
 
     return <p>Redirecting to login...</p>;
