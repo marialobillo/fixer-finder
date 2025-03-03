@@ -8,7 +8,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<GetAllTasks />} />
+        <Route path='/' element={} />
+        <Route path='/tasks' element={<GetAllTasks />} />
         <Route path='/newtask' element={<NewTask />} />
         <Route path='/taskfilter' element={<TaskFilter />} />
       </Routes>
