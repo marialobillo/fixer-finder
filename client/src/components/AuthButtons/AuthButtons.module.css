@@ -1,0 +1,33 @@
+.authButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.login {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;  /* Rounded */
+    cursor: pointer;
+}
+
+.login:hover {
+    background: #fff;
+    color: #000;
+}
+
+.signup {
+    background: #ff6b6b;  /* Red */
+    color: white;
+    border: 2px solid #ff6b6b;
+    padding: 8px 15px;
+    border-radius: 15px; /* More rounded */
+    cursor: pointer;
+}
+
+.signup:hover {
+    background: #bb6b6d;
+    border: 2px solid white;
+    cursor: pointer;
+}
